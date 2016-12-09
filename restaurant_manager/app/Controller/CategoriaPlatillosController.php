@@ -1,37 +1,18 @@
-esto es una prueba<?php
+<?php
 App::uses('AppController', 'Controller');
-/**
- * CategoriaPlatillos Controller
- *
- * @property CategoriaPlatillo $CategoriaPlatillo
- * @property PaginatorComponent $Paginator
- */
+
 class CategoriaPlatillosController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+
 	public $components = array('Paginator');
 
-/**
- * index method
- *
- * @return void
- */
+
 	public function index() {
 		$this->CategoriaPlatillo->recursive = 0;
 		$this->set('categoriaPlatillos', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->CategoriaPlatillo->exists($id)) {
 			throw new NotFoundException(__(' Categoria de platillo invalido'));
@@ -40,11 +21,7 @@ class CategoriaPlatillosController extends AppController {
 		$this->set('categoriaPlatillo', $this->CategoriaPlatillo->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->CategoriaPlatillo->create();
@@ -57,13 +34,7 @@ class CategoriaPlatillosController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function edit($id = null) {
 		if (!$this->CategoriaPlatillo->exists($id)) {
 			throw new NotFoundException(__('Invalid categoria platillo'));
@@ -81,13 +52,7 @@ class CategoriaPlatillosController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function delete($id = null) {
 		$this->CategoriaPlatillo->id = $id;
 		if (!$this->CategoriaPlatillo->exists()) {
