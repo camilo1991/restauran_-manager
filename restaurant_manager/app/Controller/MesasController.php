@@ -1,38 +1,19 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Mesas Controller
- *
- * @property Mesa $Mesa
- * @property PaginatorComponent $Paginator
- */
+
 class MesasController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+
 	public $components = array('Paginator');
 
-/**
- * index method
- *
- * @return void
- */
+
 	public function index() {
 		$this->Mesa->recursive = 0;
 		$this->Paginator->settings = array('limit' => 5);
 		$this->set('mesas', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->Mesa->exists($id)) {
 			throw new NotFoundException(__('Invalid mesa'));
@@ -41,11 +22,7 @@ class MesasController extends AppController {
 		$this->set('mesa', $this->Mesa->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Mesa->create();
@@ -60,13 +37,7 @@ class MesasController extends AppController {
 		$this->set(compact('meseros'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function edit($id = null) {
 		if (!$this->Mesa->exists($id)) {
 			throw new NotFoundException(__('Invalid mesa'));
@@ -86,13 +57,7 @@ class MesasController extends AppController {
 		$this->set(compact('meseros'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function delete($id = null) {
 		$this->Mesa->id = $id;
 		if (!$this->Mesa->exists()) {
