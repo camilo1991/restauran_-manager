@@ -1,37 +1,17 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Cocineros Controller
- *
- * @property Cocinero $Cocinero
- * @property PaginatorComponent $Paginator
- */
+
 class CocinerosController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+
 	public $components = array('Paginator');
 
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->Cocinero->recursive = 0;
 		$this->set('cocineros', $this->Paginator->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->Cocinero->exists($id)) {
 			throw new NotFoundException(__('Invalid cocinero'));
@@ -40,11 +20,7 @@ class CocinerosController extends AppController {
 		$this->set('cocinero', $this->Cocinero->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Cocinero->create();
@@ -59,13 +35,7 @@ class CocinerosController extends AppController {
 		$this->set(compact('platillos'));
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function edit($id = null) {
 		if (!$this->Cocinero->exists($id)) {
 			throw new NotFoundException(__('Invalid cocinero'));
@@ -85,13 +55,7 @@ class CocinerosController extends AppController {
 		$this->set(compact('platillos'));
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function delete($id = null) {
 		$this->Cocinero->id = $id;
 		if (!$this->Cocinero->exists()) {
