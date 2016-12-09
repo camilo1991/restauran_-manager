@@ -1,18 +1,9 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Meseros Controller
- *
- * @property Mesero $Mesero
- * @property PaginatorComponent $Paginator
- */
+
 class MeserosController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+
 	public $components = array('Session', 'RequestHandler');
 	public $helpers = array('Html', 'Form', 'Time', 'Js');
 
@@ -23,29 +14,19 @@ class MeserosController extends AppController {
         )
     );
 
-/**
- * index method
- *
- * @return void
- */
+
 	public function index() {
 
 		$this->Mesero->recursive = 0;
 
 		$this->paginate['Mesero']['limit'] = 3;
-		//$this->paginate['Mesero']['conditions'] = array('Mesero.dni' => "34343");
+		
 		$this->paginate['Mesero']['order'] = array('Mesero.id' => 'asc');
- 		//$this->Paginator->settings = $this->paginate;
+ 	
 		$this->set('meseros', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function view($id = null) {
 		if (!$this->Mesero->exists($id)) {
 			throw new NotFoundException(__('Invalid mesero'));
@@ -54,11 +35,7 @@ class MeserosController extends AppController {
 		$this->set('mesero', $this->Mesero->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Mesero->create();
@@ -71,13 +48,7 @@ class MeserosController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function edit($id = null) {
 		if (!$this->Mesero->exists($id)) {
 			throw new NotFoundException(__('Invalid mesero'));
@@ -95,13 +66,7 @@ class MeserosController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+
 	public function delete($id = null) {
 		$this->Mesero->id = $id;
 		if (!$this->Mesero->exists()) {
